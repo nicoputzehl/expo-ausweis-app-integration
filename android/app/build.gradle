@@ -92,7 +92,11 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "1.0.0"
+        versionName "1.0.0" 
+        packagingOptions {
+            pickFirst "lib/arm64-v8a/libc++_shared.so"
+            jniLibs { useLegacyPackaging = true }
+        }
     }
     signingConfigs {
         debug {
@@ -159,6 +163,8 @@ dependencies {
         implementation("com.facebook.fresco:animated-gif:${reactAndroidLibs.versions.fresco.get()}")
     }
 
+    implementation 'com.governikus:ausweisapp:2.2.2'
+    
     if (isWebpEnabled) {
         // For webp support
         implementation("com.facebook.fresco:webpsupport:${reactAndroidLibs.versions.fresco.get()}")
